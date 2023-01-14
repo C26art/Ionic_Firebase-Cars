@@ -1,0 +1,21 @@
+.user-image{
+  --size: 100px;
+  margin: auto;
+}
+.photo-wrapper{
+  justify-content: center;
+}
+ion-content{
+  --padding-top: 15px;
+  --background: #ffff00 url('../../assets/image/back.png') no-repeat center center / cover !important;  
+}
+
+ion-title{
+  text-align: center;
+  color: #f3f3f3; 
+  font-weight: 600; 
+}
+
+.new-background-color{
+  --background: rgb(228, 72, 72);
+}
