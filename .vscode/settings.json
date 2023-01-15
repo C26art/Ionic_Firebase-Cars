@@ -1,6 +1,8 @@
 {
   "cSpell.words": [
+    "afstorage",
     "appspot",
+    "arquivo",
     "Aufcq",
     "Cadastro",
     "Carro",
@@ -13,8 +15,10 @@
     "curso",
     "está",
     "firebaseapp",
+    "Firestorage",
     "Firestore",
     "homescreen",
+    "inválido",
     "Lista",
     "Listagem",
     "localidade",
@@ -28,6 +32,7 @@
     "produtocategoria",
     "redirecionar",
     "Salvar",
-    "sendo"
+    "sendo",
+    "Tipo"
   ]
 }

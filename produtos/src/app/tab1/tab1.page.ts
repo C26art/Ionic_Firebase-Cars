@@ -41,6 +41,15 @@ export class Tab1Page implements OnInit {
     this.carroFormGroupDirective.reset();
   }
 
+  uploadImage(event: FileList) {
+    const file = event.item(0);
+
+    if(file?.type.split('/')[0] !== 'image') {
+      console.error('Tipo de arquivo inválido');
+      return;
+    }    
+  }
+
   loadEndereco() {
     const cep:string = this.carroFormGroup.get('cep')?.value;
     this.correiosService.getEndereco(cep).subscribe({

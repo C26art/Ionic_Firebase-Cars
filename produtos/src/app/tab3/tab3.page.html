@@ -31,9 +31,8 @@
         <ion-avatar slot="start">
           <img src="/assets/image/avatar1.png" alt="" />
         </ion-avatar>
-        <ion-item>
-          <ion-label>{{carro.marca}}</ion-label>
-        </ion-item>
+        <ion-label (click)="editCarro(carro.id)">{{carro.marca}}</ion-label>
+        
         <ion-item>
           <ion-label>{{carro.modelo}}</ion-label>
         </ion-item>

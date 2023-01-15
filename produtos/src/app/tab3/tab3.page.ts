@@ -5,6 +5,7 @@ import {
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Carros } from '../models/carros';
 import { FirebaseService } from '../services/firebase.service';
@@ -19,11 +20,12 @@ export class Tab3Page implements OnInit {
   searchFG!: FormGroup;
 
   @ViewChild('searchFGD') searchFGD!: FormGroupDirective;
-  
+
 
   constructor(
     private toastController: ToastController,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -55,5 +57,9 @@ export class Tab3Page implements OnInit {
       position: 'middle',
     });
     await toast.present();
+  }
+
+  editCarro(id:string) {
+    this.router.navigateByUrl(`/tabs/details/${id}`);
   }
 }
