@@ -18,6 +18,8 @@ export class Tab1Page implements OnInit {
   constructor(private firebaseService: FirebaseService, private correiosService: CorreiosService, private router: Router,
     private route: ActivatedRoute) {}
 
+    
+
   ngOnInit(): void {
       this.carroFormGroup = new FormGroup({
         'marca': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
@@ -47,7 +49,7 @@ export class Tab1Page implements OnInit {
     if(file?.type.split('/')[0] !== 'image') {
       console.error('Tipo de arquivo inválido');
       return;
-    }    
+    }
   }
 
   loadEndereco() {

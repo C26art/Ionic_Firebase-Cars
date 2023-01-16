@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons>
+      <ion-menu-button> </ion-menu-button>
+      <ion-title>Login</ion-title>
+      <ion-icon name="lock-closed" class="ion-padding-end"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="upper">
+    <div class="icon">
+      <ion-icon name="skull"></ion-icon>
+    </div>
+    <p id="login">Carros</p>
+  </div>
+  <div class="middle">
+    <div class="box">
+      <form [formGroup]="carroFormGroup" #carroFormGroupDirective="ngForm" (ngSubmit)="createLogin(carroFormGroup.value)">
+        <p>Please, Enter Your Login</p>
+        <ion-item>
+          <ion-label position="floating"> Email Address </ion-label>
+          <ion-input
+            type="email"
+            placeholder=" Enter email"
+            formControlName="email"
+            id="email"
+            required email
+          >
+          </ion-input>
+          <ion-icon
+            class="ion-align-self-center"
+            slot="end"
+            name="mail"
+          ></ion-icon>
+        </ion-item>
+        <div>
+          <ion-text color="danger-text-center">
+            <h4
+              style="
+                padding-left: 20px;
+                margin-top: 10px;
+                font-size: 13px;
+                color: #222;
+              "
+            >
+              Please Write Your Email Address!
+            </h4>
+          </ion-text>
+        </div>
+        <ion-item>
+          <ion-label position="floating"> Confirmar Email </ion-label>
+          <ion-input
+            type="confEmail"
+            placeholder=" confirmar email"
+            formControlName="confEmail"            
+            id="confEmail"
+            required email
+          >
+          </ion-input>
+          <ion-icon
+            class="ion-align-self-center"
+            slot="end"
+            name="mail"
+          ></ion-icon>
+        </ion-item>
+        <div *ngIf="carroFormGroup.get('confEmail')?.hasError('equalsTo') && carroFormGroup.get('confEmail')?.touched">
+         Emails não são iguais.
+        </div>
+        <ion-item>
+          <ion-label position="floating"> Password </ion-label>
+          <ion-input
+            type="password"
+            placeholder=" Enter password"            
+            formControlName="password"
+            id="password"
+            required
+          >
+          </ion-input>
+          <ion-icon
+            class="ion-align-self-center"
+            slot="end"
+            name="eye-outline"
+            (click)="changeType()"
+          ></ion-icon>
+        </ion-item>
+        <div>
+          <ion-text color="danger-text-center">
+            <h4
+              style="
+                padding-left: 20px;
+                margin-top: 10px;
+                font-size: 13px;
+                color: #222;
+              "
+            >
+              Please Write Your Password Here!
+            </h4>
+          </ion-text>
+        </div>
+        <ion-item>
+          <ion-label position="floating"> Confirmar Password </ion-label>
+          <ion-input
+            type="confPass"
+            placeholder=" Enter password"           
+            formControlName="confPass"
+            id="confPass"
+            required
+          >
+          </ion-input>
+          <ion-icon
+            class="ion-align-self-center"
+            slot="end"
+            name="eye-outline"
+            (click)="changeType()"
+          ></ion-icon>
+        </ion-item>
+        <div *ngIf="carroFormGroup.get('confPass')?.hasError('equalsTo') && carroFormGroup.get('confPass')?.touched">
+          Senhas não são iguais.
+         </div>
+        <div class="btn">
+          <ion-button color="danger" type="submit">Login</ion-button>
+        </div>
+      </form>
+
+      <p id="media">Or Login Using Social Media</p>
+
+      <div class="socialMedia">
+        <ion-icon name="logo-facebook" (click)="facebookLogin()"></ion-icon>
+        <ion-icon name="logo-instagram" (click)="instagramLogin()"></ion-icon>
+        <ion-icon name="logo-twitter" (click)="twitterLogin()"></ion-icon>
+      </div>
+
+      <div class="touchLogin" (click)="touchLogin()">
+        <ion-icon name="finger-print-outline"></ion-icon>
+        <p>Sing in Using Touch ID</p>
+      </div>
+
+      <div class="faceLogin" (click)="faceLogin()">
+        <ion-icon name="eye-outline"></ion-icon>
+        <p>Sing in Using Touch ID</p>
+      </div>
+      <div (click)="openSignUp()" class="recover">
+        <a href="/register">Forgot your password?</a>
+      </div>
+    </div>
+  </div>
+  <div class="buttons">
+    <ion-button color="danger">Registrar</ion-button>
+  </div>
+</ion-content>

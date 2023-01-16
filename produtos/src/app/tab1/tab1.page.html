@@ -8,7 +8,7 @@
 
 <ion-content [fullscreen]="true">
  <ion-thumbnail class="user-image">
-  <img src="/assets/image/logs.png" alt="">
+  <img src="/assets/image/logs.png" alt="image">
  </ion-thumbnail>
  <ion-row class="photo-wrapper">
   <ion-button fill="clear">Add Photo</ion-button>
@@ -19,6 +19,9 @@
         <ion-label position="stacked">Marca:</ion-label>
         <ion-input formControlName="marca" id="marca" inputmode="text" clearInput="true" required></ion-input>
       </ion-item>
+      <div *ngIf="carroFormGroup.get('marca')?.hasError('required') && carroFormGroup.get('marca')?.touched">
+        Campo não pode estar vazio.
+      </div>
      <ion-item>
             <ion-label position="stacked">Modelo:</ion-label>
             <ion-input
@@ -76,7 +79,7 @@
               id="logradouro"
               inputmode="text"
               clearInput="true"
-              required readonly               
+              required readonly
             ></ion-input>
           </ion-item>
           <ion-item>
