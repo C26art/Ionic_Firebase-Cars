@@ -8,8 +8,13 @@ export class Carros{
   ano!: number;
   categoria!: CarroCategoria;
   concessionaria!: string;
+  nome!: string;
+  username!: string;
+  password!: string;
+  email!: string;
+  cpf!: string;   
   cep!: string;
-  logradouro!: string;  
+  logradouro!: string;
   bairro!: string;
   localidade!: string;
   numero!: number;

@@ -13,12 +13,14 @@ import { Endereco } from '../models/endereco.model';
 })
 export class Tab1Page implements OnInit {
   carroFormGroup!: FormGroup;
+  validaUsuario = true;
+  validaEmail = true;
   @ViewChild('carroFormGroupDirective') carroFormGroupDirective!: FormGroupDirective;
 
   constructor(private firebaseService: FirebaseService, private correiosService: CorreiosService, private router: Router,
     private route: ActivatedRoute) {}
 
-    
+
 
   ngOnInit(): void {
       this.carroFormGroup = new FormGroup({
@@ -27,6 +29,11 @@ export class Tab1Page implements OnInit {
         'ano': new FormControl('', Validators.required),
         'categoria': new FormControl('', Validators.required),
         'concessionaria': new FormControl('', Validators.required),
+        'nome': new FormControl('',[Validators.required/*,Validators.pattern(/^[a-zA-Z]/),Validators.minLength(6),Validators.maxLength(60)*/]),
+        'username': new FormControl('',[Validators.required]),
+        'password': new FormControl('',[Validators.required]),
+        'email': new FormControl('',[Validators.required/*,Validators.pattern(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i)*/]),    
+        'cpf': new FormControl('',[Validators.required/*,Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)*/]),
         'cep': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]),
         'logradouro': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
         'numero': new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(/^[0-9]+$/)]),
@@ -35,13 +42,12 @@ export class Tab1Page implements OnInit {
       });
   }
 
-
-  createCarro(values: any) {
-    let newCarro: Carros = {...values};
-    this.firebaseService.save(newCarro);
-    console.log(newCarro);
-    this.carroFormGroupDirective.reset();
-  }
+    createCarro(values: any) {
+      let newCarro: Carros = {...values};
+      this.firebaseService.save(newCarro);
+      console.log(newCarro);
+      this.carroFormGroupDirective.reset(); 
+   }
 
   uploadImage(event: FileList) {
     const file = event.item(0);
@@ -50,7 +56,8 @@ export class Tab1Page implements OnInit {
       console.error('Tipo de arquivo inválido');
       return;
     }
-  }
+  } 
+
 
   loadEndereco() {
     const cep:string = this.carroFormGroup.get('cep')?.value;

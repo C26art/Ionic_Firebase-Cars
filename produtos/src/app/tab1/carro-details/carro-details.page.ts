@@ -63,10 +63,19 @@ export class CarroDetailsPage implements OnInit {
     this.carroFormGroupDirective.reset();
   }
 
-  deleteCarro() {
+  deleteCarro(id:any) {
+  console.log(id);
+  if(window.confirm('Tem certeza que deseja deletar?')){
     this.firebaseService
-      .delete(this.carros.id)
-      .then(() => this.router.navigateByUrl('/tabs/list'))
-      .catch((err) => console.error(err));
+     .delete(this.carros.id)
+     .then(() => this.router.navigateByUrl('/tabs/list'))
+     .catch((err) => console.error(err));
   }
+}
+   // this.firebaseService
+     // .delete(this.carros.id)
+     // .then(() => this.router.navigateByUrl('/tabs/list'))
+     // .catch((err) => console.error(err));  }
+
+
 }

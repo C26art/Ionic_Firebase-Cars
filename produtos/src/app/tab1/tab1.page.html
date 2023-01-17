@@ -1,123 +1,187 @@
-<ion-header [translucent]="true" class="ion-no-border" >
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar class="new-background-color">
-    <ion-title>
-      Novo Cadastro
-    </ion-title>
+    <ion-title> Novo Cadastro </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
- <ion-thumbnail class="user-image">
-  <img src="/assets/image/logs.png" alt="image">
- </ion-thumbnail>
- <ion-row class="photo-wrapper">
-  <ion-button fill="clear">Add Photo</ion-button>
-</ion-row>
-  <form [formGroup]="carroFormGroup" #carroFormGroupDirective="ngForm" (ngSubmit)="createCarro(carroFormGroup.value)">
+  <ion-thumbnail class="user-image">
+    <img src="/assets/image/logs.png" alt="image" />
+  </ion-thumbnail>
+  <ion-row class="photo-wrapper">
+    <ion-button fill="clear">Add Photo</ion-button>
+  </ion-row>
+  <form
+    [formGroup]="carroFormGroup"
+    #carroFormGroupDirective="ngForm"
+    (ngSubmit)="createCarro(carroFormGroup.value)"
+  >
     <ion-list>
       <ion-item>
         <ion-label position="stacked">Marca:</ion-label>
-        <ion-input formControlName="marca" id="marca" inputmode="text" clearInput="true" required></ion-input>
+        <ion-input
+          formControlName="marca"
+          id="marca"
+          inputmode="text"
+          clearInput="true"
+          required
+        ></ion-input>
       </ion-item>
-      <div *ngIf="carroFormGroup.get('marca')?.hasError('required') && carroFormGroup.get('marca')?.touched">
+      <div
+        *ngIf="carroFormGroup.get('marca')?.hasError('required') && carroFormGroup.get('marca')?.touched"
+      >
         Campo não pode estar vazio.
       </div>
-     <ion-item>
-            <ion-label position="stacked">Modelo:</ion-label>
-            <ion-input
-              formControlName="modelo"
-              id="modelo"
-              inputmode="text"
-              clearInput="true"
-              required
-            ></ion-input>
-          </ion-item>
       <ion-item>
-            <ion-label position="stacked">Ano:</ion-label>
-            <ion-input
-              formControlName="ano"
-              id="ano"
-              inputmode="number"
-              clearInput="true"
-              required
-            ></ion-input>
-          </ion-item>
+        <ion-label position="stacked">Modelo:</ion-label>
+        <ion-input
+          formControlName="modelo"
+          id="modelo"
+          inputmode="text"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
       <ion-item>
-            <ion-label position="stacked">Categoria:</ion-label>
-            <ion-select placeholder="Select" formControlName="categoria">
-              <ion-select-option value="Hatch">Hatch</ion-select-option>
-              <ion-select-option value="Sedan">Sedan</ion-select-option>
-              <ion-select-option value="Picape">Picape</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Concessionaria:</ion-label>
-            <ion-input
-              formControlName="concessionaria"
-              id="concessionaria"
-              inputmode="text"
-              clearInput="true"
-              required
-            ></ion-input>
-          </ion-item>
+        <ion-label position="stacked">Ano:</ion-label>
+        <ion-input
+          formControlName="ano"
+          id="ano"
+          inputmode="number"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Categoria:</ion-label>
+        <ion-select formControlName="categoria">
+          <ion-select-option value="Hatch">Hatch</ion-select-option>
+          <ion-select-option value="Sedan">Sedan</ion-select-option>
+          <ion-select-option value="Picape">Picape</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Concessionaria:</ion-label>
+        <ion-input
+          formControlName="concessionaria"
+          id="concessionaria"
+          inputmode="text"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Nome:</ion-label>
+        <ion-input
+          formControlName="nome"
+          id="nome"
+          inputmode="text"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Username:</ion-label>
+        <ion-input
+          formControlName="username"
+          id="username"
+          inputmode="text"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Senha:</ion-label>
+        <ion-input
+          formControlName="password"
+          id="password"
+          inputmode="password"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email:</ion-label>
+        <ion-input
+          formControlName="email"
+          id="email"
+          inputmode="email"
+          clearInput="true"
+          required
+          email
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">CPF:</ion-label>
+        <ion-input
+          formControlName="cpf"
+          id="cpf"
+          inputmode="text"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">CEP:</ion-label>
-            <ion-input
-            (change)="loadEndereco()"
-              formControlName="cep"
-              id="cep"
-              inputmode="text"
-              clearInput="true"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Logradouro:</ion-label>
-            <ion-input
-              formControlName="logradouro"
-              id="logradouro"
-              inputmode="text"
-              clearInput="true"
-              required readonly
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Número:</ion-label>
-            <ion-input
-              formControlName="numero"
-              id="numero"
-              inputmode="number"
-              clearInput="true"
-              required
-            ></ion-input>
-          </ion-item>
-            <ion-item>
-              <ion-label position="stacked">Bairro:</ion-label>
-              <ion-input
-                formControlName="bairro"
-                id="bairro"
-                inputmode="text"
-                clearInput="true"
-                required readonly
-              ></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="stacked">Cidade:</ion-label>
-              <ion-input
-                formControlName="localidade"
-                id="localidade"
-                inputmode="text"
-                clearInput="true"
-                required readonly
-              ></ion-input>
-            </ion-item>
+      <ion-item>
+        <ion-label position="stacked">CEP:</ion-label>
+        <ion-input
+          (change)="loadEndereco()"
+          formControlName="cep"
+          id="cep"
+          inputmode="text"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Logradouro:</ion-label>
+        <ion-input
+          formControlName="logradouro"
+          id="logradouro"
+          inputmode="text"
+          clearInput="true"
+          required
+          readonly
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Número:</ion-label>
+        <ion-input
+          formControlName="numero"
+          id="numero"
+          inputmode="number"
+          clearInput="true"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Bairro:</ion-label>
+        <ion-input
+          formControlName="bairro"
+          id="bairro"
+          inputmode="text"
+          clearInput="true"
+          required
+          readonly
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Cidade:</ion-label>
+        <ion-input
+          formControlName="localidade"
+          id="localidade"
+          inputmode="text"
+          clearInput="true"
+          required
+          readonly
+        ></ion-input>
+      </ion-item>
 
-          <ion-item lines="none">
-            <ion-buttons>
-              <ion-button type="submit" color="primary">Salvar</ion-button>
-            </ion-buttons>
-           </ion-item>
+      <ion-item lines="none">
+        <ion-buttons>
+          <ion-button type="submit" style="background:rgb(228, 72, 72); color: #f3f3f3; border-radius: 4px;">Salvar</ion-button>
+        </ion-buttons>
+      </ion-item>
     </ion-list>
   </form>
 </ion-content>

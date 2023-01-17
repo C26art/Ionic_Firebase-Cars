@@ -6,12 +6,12 @@ import { environment } from 'src/environments/environment';
 import { Endereco } from '../models/endereco.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CorreiosService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getEndereco(cep:string): Observable<Endereco> {
+  getEndereco(cep: string): Observable<Endereco> {
     return this.http.get<Endereco>(`${environment.correiosWS}/${cep}/json/`);
   }
 }

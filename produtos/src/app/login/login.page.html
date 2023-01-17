@@ -17,18 +17,63 @@
   </div>
   <div class="middle">
     <div class="box">
-      <form [formGroup]="carroFormGroup" #carroFormGroupDirective="ngForm" (ngSubmit)="createLogin(carroFormGroup.value)">
-        <p>Please, Enter Your Login</p>
+      <form
+        [formGroup]="carroFormGroup"
+        #carroFormGroupDirective="ngForm"
+        (ngSubmit)="registrar(carroFormGroup.value)"
+      >
         <ion-item>
-          <ion-label position="floating"> Email Address </ion-label>
+          <ion-label position="floating"> Usuário: </ion-label>
           <ion-input
+            (keyup)="verificaUsername()"
+            inputmode="text"
+            type="username"
+            placeholder=" Enter username"
+            formControlName="username"
+            id="username"
+            required
+          >
+          </ion-input>
+          <ion-item *ngIf="!validaUserName" color="danger">
+            usuário já existe
+          </ion-item>
+          <ion-icon
+            class="ion-align-self-center"
+            slot="end"
+            name="person"
+          ></ion-icon>
+        </ion-item>
+        <div>
+          <ion-text color="danger-text-center">
+            <h4
+              style="
+                padding-left: 20px;
+                margin-top: 10px;
+                font-size: 13px;
+                color: #f00;
+                font-style: italic;
+              "
+            >
+              Please Write Your Username!
+            </h4>
+          </ion-text>
+        </div>
+        <ion-item>
+          <ion-label position="floating"> Email Address: </ion-label>
+          <ion-input
+            (keyup)="verificaEmail()"
             type="email"
             placeholder=" Enter email"
             formControlName="email"
             id="email"
-            required email
+            inputmode="email"
+            required
+            email
           >
           </ion-input>
+          <ion-item *ngIf="!validaEmail" color="danger">
+            e-mail já cadastrado
+          </ion-item>
           <ion-icon
             class="ion-align-self-center"
             slot="end"
@@ -42,7 +87,8 @@
                 padding-left: 20px;
                 margin-top: 10px;
                 font-size: 13px;
-                color: #222;
+                color: #f00;
+                font-style: italic;
               "
             >
               Please Write Your Email Address!
@@ -50,13 +96,15 @@
           </ion-text>
         </div>
         <ion-item>
-          <ion-label position="floating"> Confirmar Email </ion-label>
+          <ion-label position="floating"> Confirmar Email: </ion-label>
           <ion-input
             type="confEmail"
             placeholder=" confirmar email"
-            formControlName="confEmail"            
+            formControlName="confEmail"
             id="confEmail"
-            required email
+            inputmode="email"
+            required
+            email
           >
           </ion-input>
           <ion-icon
@@ -65,16 +113,34 @@
             name="mail"
           ></ion-icon>
         </ion-item>
-        <div *ngIf="carroFormGroup.get('confEmail')?.hasError('equalsTo') && carroFormGroup.get('confEmail')?.touched">
-         Emails não são iguais.
+        <div
+          *ngIf="carroFormGroup.get('confEmail')?.hasError('equalsTo') && carroFormGroup.get('confEmail')?.touched"
+        >
+          Emails não são iguais.
+        </div>
+        <div>
+          <ion-text color="danger-text-center">
+            <h4
+              style="
+                padding-left: 20px;
+                margin-top: 10px;
+                font-size: 13px;
+                color: #f00;
+                font-style: italic;
+              "
+            >
+              Please Confirm Your Email Address!
+            </h4>
+          </ion-text>
         </div>
         <ion-item>
-          <ion-label position="floating"> Password </ion-label>
+          <ion-label position="floating"> Password: </ion-label>
           <ion-input
             type="password"
-            placeholder=" Enter password"            
+            placeholder=" Enter password"
             formControlName="password"
             id="password"
+            inputmode="password"
             required
           >
           </ion-input>
@@ -92,7 +158,8 @@
                 padding-left: 20px;
                 margin-top: 10px;
                 font-size: 13px;
-                color: #222;
+                color: #f00;
+                font-style: italic;
               "
             >
               Please Write Your Password Here!
@@ -100,12 +167,13 @@
           </ion-text>
         </div>
         <ion-item>
-          <ion-label position="floating"> Confirmar Password </ion-label>
+          <ion-label position="floating"> Confirmar Password: </ion-label>
           <ion-input
             type="confPass"
-            placeholder=" Enter password"           
+            placeholder=" Enter password"
             formControlName="confPass"
             id="confPass"
+            inputmode="password"
             required
           >
           </ion-input>
@@ -116,9 +184,27 @@
             (click)="changeType()"
           ></ion-icon>
         </ion-item>
-        <div *ngIf="carroFormGroup.get('confPass')?.hasError('equalsTo') && carroFormGroup.get('confPass')?.touched">
+        <div
+          *ngIf="carroFormGroup.get('confPass')?.hasError('equalsTo') && carroFormGroup.get('confPass')?.touched"
+          style="color: red"
+        >
           Senhas não são iguais.
-         </div>
+        </div>
+        <div>
+          <ion-text color="danger-text-center">
+            <h4
+              style="
+                padding-left: 20px;
+                margin-top: 10px;
+                font-size: 13px;
+                color: #f00;
+                font-style: italic;
+              "
+            >
+              Please Confirm Your Password!
+            </h4>
+          </ion-text>
+        </div>
         <div class="btn">
           <ion-button color="danger" type="submit">Login</ion-button>
         </div>

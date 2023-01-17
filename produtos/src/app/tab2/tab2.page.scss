@@ -10,3 +10,37 @@
 .car{
   margin-top: 20px;
 }
+.user-image{
+  --size: 100px;  
+  align-items: center;
+  margin-left:39%;
+}
+
+.photo-wrapper{
+  justify-content: center;
+  align-items: center;
+  padding-right: 38px;
+}
+ion-content{
+  --padding-top: 15px;
+  --background: #ffff00 url('../../assets/image/back.png') no-repeat center center / cover !important;  
+}
+
+ion-title{
+  text-align: center;
+  color: #f3f3f3; 
+  font-weight: 600; 
+  padding-right: 44px;
+}
+
+.new-background-color{
+  --background: rgb(228, 72, 72);
+}
+
+ion-item{
+  .cor span{
+    color: rgb(228, 72, 72);
+    font-weight: 700;
+  }  
+}
+

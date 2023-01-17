@@ -12,9 +12,12 @@ import { FormValidations } from '../form-validations';
 })
 export class LoginPage implements OnInit {
   carroFormGroup!: FormGroup;
-  @ViewChild('carroFormGroupDirective') carroFormGroupDirective!: FormGroupDirective; 
+  @ViewChild('carroFormGroupDirective') carroFormGroupDirective!: FormGroupDirective;
 
+  validaUserName = true
+  validaEmail = true;
   type: boolean = true;
+  
 
 
   constructor(private loginService: LoginService, private router: Router,
@@ -22,7 +25,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit(): void {
     this.carroFormGroup = new FormGroup({
-      'email': new FormControl('', [Validators.required, Validators.email]),
+      'username': new FormControl('', Validators.required),
+      'email': new FormControl('', [Validators.required, Validators.email, Validators.pattern(/.+@.+\..+/)]),
       'confEmail': new FormControl('',[Validators.required, FormValidations.equalsTo('email')]),
       'password': new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[@*\.])[a-zA-Z0-9@*]{6,10}$/)]),
       'confPass': new FormControl('', [Validators.required, FormValidations.equalsTo('password')]),
@@ -32,14 +36,53 @@ export class LoginPage implements OnInit {
   changeType(){
     this.type = !this.type;
   }
+  
 
-  createLogin(values: any) {
+  registrar(values: any){
     let newLogin: Login = {...values};
-    this.loginService.save(newLogin);
-    console.log(newLogin);
-    this.carroFormGroupDirective.reset();
-    this.router.navigate(['/tabs/register'], {relativeTo: this.route});
-  } 
+    const logins = this.carroFormGroup.getRawValue() as Login;
+
+    if(this.validaEmail && this.validaUserName){
+      this.loginService.save(logins);   
+      console.log(newLogin);   
+      this.carroFormGroupDirective.reset();
+      this.router.navigate(['/tabs/register'], {relativeTo: this.route});
+    }
+  }
+  verificaUsername(){
+    this.validaUserName = true
+    this.loginService.findUsuario(this.username).subscribe({
+      next: (resultado)=>{
+        resultado.forEach(element => {
+
+
+          if(this.username === element.username){
+            console.log(element.username)
+            console.log(this.username)
+            this.validaUserName = false
+          }
+        });
+      },
+      error:(err) => console.error(err)
+    })
+  }
+  verificaEmail(){
+    this.validaEmail = true
+    this.loginService.findEmail(this.email).subscribe({
+      next: (resultado)=>{
+        resultado.forEach(element => {
+
+
+          console.log(this.validaEmail)
+          if(this.email === element.email) {
+
+            this.validaEmail = false
+          }
+        });
+      },
+      error:(err) => console.error(err)
+    });
+  }
 
 
   goToHome() {}
@@ -57,8 +100,10 @@ export class LoginPage implements OnInit {
   goToRegister() {}
 
   openSignUp() {
-  }  
- 
+  }
+
+  get username(){ return this.carroFormGroup.get('username')?.getRawValue()}
+  get email(){ return this.carroFormGroup.get('email')?.getRawValue()}
 }
 
 

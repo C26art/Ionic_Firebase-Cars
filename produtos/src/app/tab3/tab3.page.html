@@ -1,10 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar class="new-background-color">
     <ion-title> Procurar Carros </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-thumbnail class="user-image">
+    <img src="/assets/image/logs.png" alt="image" />
+  </ion-thumbnail>
+  <ion-row class="photo-wrapper">
+    <ion-button fill="clear">Add Photo</ion-button>
+  </ion-row>
   <form
     [formGroup]="searchFG"
     #searchFGD="ngForm"
@@ -32,15 +38,70 @@
           <img src="/assets/image/avatar1.png" alt="" />
         </ion-avatar>
         <ion-label (click)="editCarro(carro.id)">{{carro.marca}}</ion-label>
-        
+
         <ion-item>
-          <ion-label>{{carro.modelo}}</ion-label>
+          <ion-label class="cor">
+            <span> MODELO: </span> {{carro.modelo}}</ion-label
+          >
         </ion-item>
         <ion-item>
-          <ion-label>{{carro.ano}}</ion-label>
+          <ion-label class="cor"> <span> ANO: </span> {{carro.ano}}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>{{carro.categoria}}</ion-label>
+          <ion-label class="cor">
+            <span> CATEGORIA: </span> {{carro.categoria}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> CONCESSIONÁRIA: </span> {{carro.concessionaria}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> NOME: </span> {{carro.nome}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> USERNAME: </span> {{carro.username}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> SENHA: </span> {{carro.password}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> EMAIL: </span> {{carro.email}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor"> <span> CPF: </span> {{carro.cpf}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor"> <span> CEP: </span> {{carro.cep}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> LOGRADOURO: </span> {{carro.logradouro}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> NÚMERO: </span> {{carro.numero}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> BAIRRO: </span> {{carro.bairro}}</ion-label
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label class="cor">
+            <span> CIDADE: </span> {{carro.localidade}}</ion-label
+          >
         </ion-item>
       </div>
     </ion-accordion>
