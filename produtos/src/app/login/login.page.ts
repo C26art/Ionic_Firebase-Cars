@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   validaUserName = true
   validaEmail = true;
   type: boolean = true;
-  
+
 
 
   constructor(private loginService: LoginService, private router: Router,
@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   ngOnInit(): void {
     this.carroFormGroup = new FormGroup({
       'username': new FormControl('', Validators.required),
-      'email': new FormControl('', [Validators.required, Validators.email, Validators.pattern(/.+@.+\..+/)]),
+      'email': new FormControl('', new FormControl('',[Validators.required, Validators.pattern(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i), Validators.email])),
       'confEmail': new FormControl('',[Validators.required, FormValidations.equalsTo('email')]),
       'password': new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[@*\.])[a-zA-Z0-9@*]{6,10}$/)]),
       'confPass': new FormControl('', [Validators.required, FormValidations.equalsTo('password')]),
@@ -36,15 +36,15 @@ export class LoginPage implements OnInit {
   changeType(){
     this.type = !this.type;
   }
-  
+
 
   registrar(values: any){
     let newLogin: Login = {...values};
     const logins = this.carroFormGroup.getRawValue() as Login;
 
     if(this.validaEmail && this.validaUserName){
-      this.loginService.save(logins);   
-      console.log(newLogin);   
+      this.loginService.save(logins);
+      console.log(newLogin);
       this.carroFormGroupDirective.reset();
       this.router.navigate(['/tabs/register'], {relativeTo: this.route});
     }
