@@ -48,8 +48,15 @@ export class Tab1Page implements OnInit {
         Validators.maxLength(60),
       ]),
       username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?=.*[@*\.])[a-zA-Z0-9@*]{6,10}$/),
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i),
+        Validators.email,
+      ]),
       cpf: new FormControl('', [
         Validators.required,
         Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/),
