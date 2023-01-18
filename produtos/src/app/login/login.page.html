@@ -206,7 +206,12 @@
           </ion-text>
         </div>
         <div class="btn">
-          <ion-button color="danger" type="submit">Login</ion-button>
+          <ion-button
+            color="danger"
+            type="submit"
+            [disabled]="!carroFormGroup.valid"
+            >Login</ion-button
+          >
         </div>
       </form>
 

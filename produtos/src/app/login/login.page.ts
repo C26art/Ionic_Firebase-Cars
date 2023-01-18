@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormGroupDirective, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormGroupDirective,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { Login } from '../models/login.model';
@@ -12,78 +17,89 @@ import { FormValidations } from '../form-validations';
 })
 export class LoginPage implements OnInit {
   carroFormGroup!: FormGroup;
-  @ViewChild('carroFormGroupDirective') carroFormGroupDirective!: FormGroupDirective;
+  @ViewChild('carroFormGroupDirective')
+  carroFormGroupDirective!: FormGroupDirective;
 
-  validaUserName = true
+  validaUserName = true;
   validaEmail = true;
   type: boolean = true;
 
-
-
-  constructor(private loginService: LoginService, private router: Router,
-    private route: ActivatedRoute) { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.carroFormGroup = new FormGroup({
-      'username': new FormControl('', Validators.required),
-      'email': new FormControl('', new FormControl('',[Validators.required, Validators.pattern(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i), Validators.email])),
-      'confEmail': new FormControl('',[Validators.required, FormValidations.equalsTo('email')]),
-      'password': new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[@*\.])[a-zA-Z0-9@*]{6,10}$/)]),
-      'confPass': new FormControl('', [Validators.required, FormValidations.equalsTo('password')]),
+      username: new FormControl('', Validators.required),
+      email: new FormControl(
+        '',
+        new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i),
+          Validators.email,
+        ])
+      ),
+      confEmail: new FormControl('', [
+        Validators.required,
+        FormValidations.equalsTo('email'),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?=.*[@*\.])[a-zA-Z0-9@*]{6,10}$/),
+      ]),
+      confPass: new FormControl('', [
+        Validators.required,
+        FormValidations.equalsTo('password'),
+      ]),
     });
   }
 
-  changeType(){
+  changeType() {
     this.type = !this.type;
   }
 
-
-  registrar(values: any){
-    let newLogin: Login = {...values};
+  registrar(values: any) {
+    let newLogin: Login = { ...values };
     const logins = this.carroFormGroup.getRawValue() as Login;
 
-    if(this.validaEmail && this.validaUserName){
+    if (this.validaEmail && this.validaUserName) {
       this.loginService.save(logins);
       console.log(newLogin);
       this.carroFormGroupDirective.reset();
-      this.router.navigate(['/tabs/register'], {relativeTo: this.route});
+      this.router.navigate(['/tabs/register'], { relativeTo: this.route });
     }
   }
-  verificaUsername(){
-    this.validaUserName = true
+  verificaUsername() {
+    this.validaUserName = true;
     this.loginService.findUsuario(this.username).subscribe({
-      next: (resultado)=>{
-        resultado.forEach(element => {
-
-
-          if(this.username === element.username){
-            console.log(element.username)
-            console.log(this.username)
-            this.validaUserName = false
+      next: (resultado) => {
+        resultado.forEach((element) => {
+          if (this.username === element.username) {
+            console.log(element.username);
+            console.log(this.username);
+            this.validaUserName = false;
           }
         });
       },
-      error:(err) => console.error(err)
-    })
-  }
-  verificaEmail(){
-    this.validaEmail = true
-    this.loginService.findEmail(this.email).subscribe({
-      next: (resultado)=>{
-        resultado.forEach(element => {
-
-
-          console.log(this.validaEmail)
-          if(this.email === element.email) {
-
-            this.validaEmail = false
-          }
-        });
-      },
-      error:(err) => console.error(err)
+      error: (err) => console.error(err),
     });
   }
-
+  verificaEmail() {
+    this.validaEmail = true;
+    this.loginService.findEmail(this.email).subscribe({
+      next: (resultado) => {
+        resultado.forEach((element) => {
+          console.log(this.validaEmail);
+          if (this.email === element.email) {
+            this.validaEmail = false;
+          }
+        });
+      },
+      error: (err) => console.error(err),
+    });
+  }
 
   goToHome() {}
 
@@ -99,12 +115,12 @@ export class LoginPage implements OnInit {
 
   goToRegister() {}
 
-  openSignUp() {
+  openSignUp() {}
+
+  get username() {
+    return this.carroFormGroup.get('username')?.getRawValue();
   }
-
-  get username(){ return this.carroFormGroup.get('username')?.getRawValue()}
-  get email(){ return this.carroFormGroup.get('email')?.getRawValue()}
+  get email() {
+    return this.carroFormGroup.get('email')?.getRawValue();
+  }
 }
-
-
-

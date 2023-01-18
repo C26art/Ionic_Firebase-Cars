@@ -30,7 +30,7 @@
       <div
         *ngIf="carroFormGroup.get('marca')?.hasError('required') && carroFormGroup.get('marca')?.touched"
       >
-        Campo não pode estar vazio.
+        <i style="color: red">Campo não pode estar vazio.</i>
       </div>
       <ion-item>
         <ion-label position="stacked">Modelo:</ion-label>
@@ -42,6 +42,11 @@
           required
         ></ion-input>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('modelo')?.hasError('required') && carroFormGroup.get('modelo')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
       <ion-item>
         <ion-label position="stacked">Ano:</ion-label>
         <ion-input
@@ -52,6 +57,11 @@
           required
         ></ion-input>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('ano')?.hasError('required') && carroFormGroup.get('ano')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
       <ion-item>
         <ion-label position="stacked">Categoria:</ion-label>
         <ion-select formControlName="categoria">
@@ -60,6 +70,11 @@
           <ion-select-option value="Picape">Picape</ion-select-option>
         </ion-select>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('categoria')?.hasError('required') && carroFormGroup.get('categoria')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
       <ion-item>
         <ion-label position="stacked">Concessionaria:</ion-label>
         <ion-input
@@ -70,6 +85,11 @@
           required
         ></ion-input>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('concessionaria')?.hasError('required') && carroFormGroup.get('concessionaria')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
       <ion-item>
         <ion-label position="stacked">Nome:</ion-label>
         <ion-input
@@ -80,6 +100,11 @@
           required
         ></ion-input>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('nome')?.hasError('required') && carroFormGroup.get('nome')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
       <ion-item>
         <ion-label position="stacked">Username:</ion-label>
         <ion-input
@@ -90,6 +115,11 @@
           required
         ></ion-input>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('username')?.hasError('required') && carroFormGroup.get('username')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
       <ion-item>
         <ion-label position="stacked">Senha:</ion-label>
         <ion-input
@@ -100,6 +130,11 @@
           required
         ></ion-input>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('senha')?.hasError('required') && carroFormGroup.get('senha')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
       <ion-item>
         <ion-label position="stacked">Email:</ion-label>
         <ion-input
@@ -111,6 +146,11 @@
           email
         ></ion-input>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('email')?.hasError('required') && carroFormGroup.get('email')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
       <ion-item>
         <ion-label position="stacked">CPF:</ion-label>
         <ion-input
@@ -121,6 +161,11 @@
           required
         ></ion-input>
       </ion-item>
+      <div
+        *ngIf="carroFormGroup.get('cpf')?.hasError('required') && carroFormGroup.get('cpf')?.touched"
+      >
+        <i style="color: red">Campo não pode estar vazio.</i>
+      </div>
 
       <ion-item>
         <ion-label position="stacked">CEP:</ion-label>
@@ -179,7 +224,16 @@
 
       <ion-item lines="none">
         <ion-buttons>
-          <ion-button type="submit" style="background:rgb(228, 72, 72); color: #f3f3f3; border-radius: 4px;">Salvar</ion-button>
+          <ion-button
+            style="
+              background: rgb(228, 72, 72);
+              color: #f3f3f3;
+              border-radius: 4px;
+            "
+            type="submit"
+            [disabled]="!carroFormGroup.valid"
+            >Salvar</ion-button
+          >
         </ion-buttons>
       </ion-item>
     </ion-list>

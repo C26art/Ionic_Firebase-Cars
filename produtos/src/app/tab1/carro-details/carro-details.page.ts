@@ -39,13 +39,25 @@ export class CarroDetailsPage implements OnInit {
             marca: new FormControl(this.carros.marca, Validators.required),
             modelo: new FormControl(this.carros.modelo, Validators.required),
             ano: new FormControl(this.carros.ano, Validators.required),
-            categoria: new FormControl(this.carros.categoria, Validators.required),
-            concessionaria: new FormControl(this.carros.concessionaria, Validators.required),
+            categoria: new FormControl(
+              this.carros.categoria,
+              Validators.required
+            ),
+            concessionaria: new FormControl(
+              this.carros.concessionaria,
+              Validators.required
+            ),
             cep: new FormControl(this.carros.cep, Validators.required),
-            logradouro: new FormControl(this.carros.logradouro, Validators.required),
+            logradouro: new FormControl(
+              this.carros.logradouro,
+              Validators.required
+            ),
             numero: new FormControl(this.carros.numero, Validators.required),
             bairro: new FormControl(this.carros.bairro, Validators.required),
-            localidade: new FormControl(this.carros.localidade, Validators.required),
+            localidade: new FormControl(
+              this.carros.localidade,
+              Validators.required
+            ),
           });
         }
       },
@@ -63,19 +75,17 @@ export class CarroDetailsPage implements OnInit {
     this.carroFormGroupDirective.reset();
   }
 
-  deleteCarro(id:any) {
-  console.log(id);
-  if(window.confirm('Tem certeza que deseja deletar?')){
-    this.firebaseService
-     .delete(this.carros.id)
-     .then(() => this.router.navigateByUrl('/tabs/list'))
-     .catch((err) => console.error(err));
+  deleteCarro(id: any) {
+    console.log(id);
+    if (window.confirm('Tem certeza que deseja deletar?')) {
+      this.firebaseService
+        .delete(this.carros.id)
+        .then(() => this.router.navigateByUrl('/tabs/list'))
+        .catch((err) => console.error(err));
+    }
   }
-}
-   // this.firebaseService
-     // .delete(this.carros.id)
-     // .then(() => this.router.navigateByUrl('/tabs/list'))
-     // .catch((err) => console.error(err));  }
-
-
+  // this.firebaseService
+  // .delete(this.carros.id)
+  // .then(() => this.router.navigateByUrl('/tabs/list'))
+  // .catch((err) => console.error(err));  }
 }

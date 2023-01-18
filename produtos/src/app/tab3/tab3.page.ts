@@ -21,7 +21,6 @@ export class Tab3Page implements OnInit {
 
   @ViewChild('searchFGD') searchFGD!: FormGroupDirective;
 
-
   constructor(
     private toastController: ToastController,
     private firebaseService: FirebaseService,
@@ -59,7 +58,7 @@ export class Tab3Page implements OnInit {
     await toast.present();
   }
 
-  editCarro(id:string) {
+  editCarro(id: string) {
     this.router.navigateByUrl(`/tabs/details/${id}`);
   }
 }

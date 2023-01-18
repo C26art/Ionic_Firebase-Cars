@@ -7,14 +7,15 @@ import { FirebaseService } from '../services/firebase.service';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page {
+  carros!: Observable<Carros[]>;
 
-  carros!: Observable<Carros[]>
-
-  constructor(private firebaseService: FirebaseService,
-    private router: Router) {
+  constructor(
+    private firebaseService: FirebaseService,
+    private router: Router
+  ) {
     this.carros = this.firebaseService.list();
   }
 
@@ -22,8 +23,7 @@ export class Tab2Page {
     this.router.navigateByUrl('/tabs/register');
   }
 
-  editCarro(id:string) {
+  editCarro(id: string) {
     this.router.navigateByUrl(`/tabs/details/${id}`);
   }
-
 }
