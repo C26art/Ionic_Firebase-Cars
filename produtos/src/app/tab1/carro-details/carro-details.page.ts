@@ -47,6 +47,17 @@ export class CarroDetailsPage implements OnInit {
               this.carros.concessionaria,
               Validators.required
             ),
+            nome: new FormControl(this.carros.nome, Validators.required),
+            username: new FormControl(
+              this.carros.username,
+              Validators.required
+            ),
+            password: new FormControl(
+              this.carros.password,
+              Validators.required
+            ),
+            email: new FormControl(this.carros.email, Validators.required),
+            cpf: new FormControl(this.carros.cpf, Validators.required),
             cep: new FormControl(this.carros.cep, Validators.required),
             logradouro: new FormControl(
               this.carros.logradouro,
